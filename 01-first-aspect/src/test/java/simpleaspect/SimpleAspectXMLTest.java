@@ -22,7 +22,7 @@ public class SimpleAspectXMLTest {
     @Test
     public void aspectIsCalled() {
         assertFalse(tracingAspect.isEnteringCalled());
-        simpleService.doSomething();
+        simpleService.doSomethingElse(32);
         assertTrue(tracingAspect.isEnteringCalled());
     }
 

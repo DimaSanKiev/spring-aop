@@ -19,7 +19,7 @@ public class TracingAspect {
 
     private boolean enteringCalled = false;
 
-    @Before("execution(void doSomething())")
+    @Before("execution(void doSomethingElse(..))")
     public void entering(JoinPoint joinPoint) {
         enteringCalled = true;
         logger.trace("entering " + joinPoint.getStaticPart().getSignature().toString());
