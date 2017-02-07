@@ -15,32 +15,32 @@ import configuration.AdviceDeepDiveConfiguration;
 @ContextConfiguration(classes = AdviceDeepDiveConfiguration.class)
 public class AfterAdviceTest {
 
-  @Autowired
-  AfterAdvice afterAdvice;
+    @Autowired
+    private AfterAdvice afterAdvice;
 
-  @Autowired
-  SimpleService simpleService;
+    @Autowired
+    private SimpleService simpleService;
 
-  @Before
-  public void reset() {
-    afterAdvice.reset();
-  }
-
-  @Test
-  public void afterAspectIsCalledIfMethodReturnsSuccessfully() {
-    assertFalse(afterAdvice.isAfterCalled());
-    simpleService.doSomething();
-    assertTrue(afterAdvice.isAfterCalled());
-  }
-
-  @Test(expected = RuntimeException.class)
-  public void afterAspectIsCalledIfMethodThrowsException() {
-    assertFalse(afterAdvice.isAfterCalled());
-    try {
-      simpleService.throwsRuntimeException();
-    } finally {
-      assertTrue(afterAdvice.isAfterCalled());
+    @Before
+    public void reset() {
+        afterAdvice.reset();
     }
-  }
+
+    @Test
+    public void afterAspectIsCalledIfMethodReturnsSuccessfully() {
+        assertFalse(afterAdvice.isAfterCalled());
+        simpleService.doSomething();
+        assertTrue(afterAdvice.isAfterCalled());
+    }
+
+    @Test(expected = RuntimeException.class)
+    public void afterAspectIsCalledIfMethodThrowsException() {
+        assertFalse(afterAdvice.isAfterCalled());
+        try {
+            simpleService.throwsRuntimeException();
+        } finally {
+            assertTrue(afterAdvice.isAfterCalled());
+        }
+    }
 
 }

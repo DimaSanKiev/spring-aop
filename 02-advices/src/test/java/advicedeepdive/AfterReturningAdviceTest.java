@@ -15,39 +15,39 @@ import configuration.AdviceDeepDiveConfiguration;
 @ContextConfiguration(classes = AdviceDeepDiveConfiguration.class)
 public class AfterReturningAdviceTest {
 
-  @Autowired
-  AfterReturningAdvice afterReturningAdvice;
+    @Autowired
+    private AfterReturningAdvice afterReturningAdvice;
 
-  @Autowired
-  SimpleService simpleService;
+    @Autowired
+    private SimpleService simpleService;
 
-  @Before
-  public void reset() {
-    afterReturningAdvice.reset();
-  }
-
-  @Test
-  public void afterReturningIsNotCalledIfReturnTypeDoesntMatch() {
-    assertFalse(afterReturningAdvice.isAfterReturningCalled());
-    simpleService.returnsInt();
-    assertFalse(afterReturningAdvice.isAfterReturningCalled());
-  }
-
-  @Test(expected = RuntimeException.class)
-  public void afterReturningIsNotCalledIfExceptionIsThrown() {
-    assertFalse(afterReturningAdvice.isAfterReturningCalled());
-    try {
-      simpleService.returnsStringAndThrowsRuntimeException();
-    } finally {
-      assertFalse(afterReturningAdvice.isAfterReturningCalled());
+    @Before
+    public void reset() {
+        afterReturningAdvice.reset();
     }
-  }
 
-  @Test
-  public void afterReturningIsCalledIfReturnTypeMatches() {
-    assertFalse(afterReturningAdvice.isAfterReturningCalled());
-    simpleService.returnsString();
-    assertTrue(afterReturningAdvice.isAfterReturningCalled());
-  }
+    @Test
+    public void afterReturningIsNotCalledIfReturnTypeDoesntMatch() {
+        assertFalse(afterReturningAdvice.isAfterReturningCalled());
+        simpleService.returnsInt();
+        assertFalse(afterReturningAdvice.isAfterReturningCalled());
+    }
+
+    @Test(expected = RuntimeException.class)
+    public void afterReturningIsNotCalledIfExceptionIsThrown() {
+        assertFalse(afterReturningAdvice.isAfterReturningCalled());
+        try {
+            simpleService.returnsStringAndThrowsRuntimeException();
+        } finally {
+            assertFalse(afterReturningAdvice.isAfterReturningCalled());
+        }
+    }
+
+    @Test
+    public void afterReturningIsCalledIfReturnTypeMatches() {
+        assertFalse(afterReturningAdvice.isAfterReturningCalled());
+        simpleService.returnsString();
+        assertTrue(afterReturningAdvice.isAfterReturningCalled());
+    }
 
 }

@@ -10,22 +10,22 @@ import org.springframework.stereotype.Component;
 @Aspect
 public class AfterReturningAdvice {
 
-	Logger logger = LoggerFactory.getLogger(AfterReturningAdvice.class);
+    private Logger logger = LoggerFactory.getLogger(AfterReturningAdvice.class);
 
-	private boolean afterReturningCalled = false;
+    private boolean afterReturningCalled = false;
 
-	public void reset() {
-		afterReturningCalled = false;
-	}
+    public void reset() {
+        afterReturningCalled = false;
+    }
 
-  public boolean isAfterReturningCalled() {
-    return afterReturningCalled;
-  }
+    public boolean isAfterReturningCalled() {
+        return afterReturningCalled;
+    }
 
-  @AfterReturning(pointcut = "execution(* *(..))", returning = "string")
-	public void logResult(String string) {
-		afterReturningCalled = true;
-		logger.trace("result " + string);
-	}
+    @AfterReturning(pointcut = "execution(* *(..))", returning = "string")
+    public void logResult(String string) {
+        afterReturningCalled = true;
+        logger.trace("result " + string);
+    }
 
 }

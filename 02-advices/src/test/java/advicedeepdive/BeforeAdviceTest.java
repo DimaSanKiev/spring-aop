@@ -15,29 +15,29 @@ import configuration.AdviceDeepDiveConfiguration;
 @ContextConfiguration(classes = AdviceDeepDiveConfiguration.class)
 public class BeforeAdviceTest {
 
-  @Autowired
-  BeforeAdvice beforeAspect;
+    @Autowired
+    private BeforeAdvice beforeAspect;
 
-  @Autowired
-  SimpleService simpleService;
+    @Autowired
+    private SimpleService simpleService;
 
-  @Before
-  public void reset() {
-    beforeAspect.reset();
-  }
+    @Before
+    public void reset() {
+        beforeAspect.reset();
+    }
 
-  @Test
-  public void beforeIsCalledIfCorrectMethodIsCalled() {
-    assertFalse(beforeAspect.isBeforeCalled());
-    simpleService.doSomething();
-    assertTrue(beforeAspect.isBeforeCalled());
-  }
+    @Test
+    public void beforeIsCalledIfCorrectMethodIsCalled() {
+        assertFalse(beforeAspect.isBeforeCalled());
+        simpleService.doSomething();
+        assertTrue(beforeAspect.isBeforeCalled());
+    }
 
-  @Test
-  public void beforeIsNotCalledIfDifferentMethodIsCalled() {
-    assertFalse(beforeAspect.isBeforeCalled());
-    simpleService.returnsString();
-    assertFalse(beforeAspect.isBeforeCalled());
-  }
+    @Test
+    public void beforeIsNotCalledIfDifferentMethodIsCalled() {
+        assertFalse(beforeAspect.isBeforeCalled());
+        simpleService.returnsString();
+        assertFalse(beforeAspect.isBeforeCalled());
+    }
 
 }

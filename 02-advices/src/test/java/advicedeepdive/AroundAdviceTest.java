@@ -16,39 +16,39 @@ import configuration.AdviceDeepDiveConfiguration;
 @ContextConfiguration(classes = AdviceDeepDiveConfiguration.class)
 public class AroundAdviceTest {
 
-	@Autowired
-	AroundAdvice aroundAspect;
+    @Autowired
+    private AroundAdvice aroundAspect;
 
-	@Autowired
-	SimpleService simpleService;
+    @Autowired
+    private SimpleService simpleService;
 
-	@Before
-	public void rest() {
-		aroundAspect.reset();
-	}
-	
-	@Test
-	public void aroundAdviceIsCalledForSimpleMethod() {
-		assertFalse(aroundAspect.isCalled());
-		simpleService.doSomething();
-		assertTrue(aroundAspect.isCalled());
-	}
+    @Before
+    public void rest() {
+        aroundAspect.reset();
+    }
 
-	@Test(expected = RuntimeException.class)
-	public void aroundAdviceIsCalledIfExceptionIsThrown() {
-		assertFalse(aroundAspect.isCalled());
-		try {
-			simpleService.throwsRuntimeException();
-		} finally {
-			assertTrue(aroundAspect.isCalled());
-		}
-	}
+    @Test
+    public void aroundAdviceIsCalledForSimpleMethod() {
+        assertFalse(aroundAspect.isCalled());
+        simpleService.doSomething();
+        assertTrue(aroundAspect.isCalled());
+    }
 
-	@Test
-	public void aroundAdviceIsCalledIfValueIsReturned() {
-		assertFalse(aroundAspect.isCalled());
-		assertThat(simpleService.returnsString(), equalTo("42"));
-		assertTrue(aroundAspect.isCalled());
-	}
+    @Test(expected = RuntimeException.class)
+    public void aroundAdviceIsCalledIfExceptionIsThrown() {
+        assertFalse(aroundAspect.isCalled());
+        try {
+            simpleService.throwsRuntimeException();
+        } finally {
+            assertTrue(aroundAspect.isCalled());
+        }
+    }
+
+    @Test
+    public void aroundAdviceIsCalledIfValueIsReturned() {
+        assertFalse(aroundAspect.isCalled());
+        assertThat(simpleService.returnsString(), equalTo("42"));
+        assertTrue(aroundAspect.isCalled());
+    }
 
 }

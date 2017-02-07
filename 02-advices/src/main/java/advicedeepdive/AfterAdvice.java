@@ -11,25 +11,25 @@ import org.springframework.stereotype.Component;
 @Aspect
 public class AfterAdvice {
 
-  Logger logger = LoggerFactory.getLogger(AfterAdvice.class);
+    private Logger logger = LoggerFactory.getLogger(AfterAdvice.class);
 
-  private boolean afterCalled = false;
+    private boolean afterCalled = false;
 
-  public void reset() {
-    afterCalled = false;
-  }
+    public void reset() {
+        afterCalled = false;
+    }
 
-  public boolean isAfterCalled() {
-    return afterCalled;
-  }
+    public boolean isAfterCalled() {
+        return afterCalled;
+    }
 
-  @After("execution(* *(..))")
-	public void exiting(JoinPoint joinPoint) {
-		afterCalled = true;
-		logger.trace("exiting "
-				+ joinPoint.getSignature());
-		for (Object arg : joinPoint.getArgs()) {
-			logger.trace("Arg : " + arg);
-		}
-	}
+    @After("execution(* *(..))")
+    public void exiting(JoinPoint joinPoint) {
+        afterCalled = true;
+        logger.trace("exiting "
+                + joinPoint.getSignature());
+        for (Object arg : joinPoint.getArgs()) {
+            logger.trace("Arg : " + arg);
+        }
+    }
 }

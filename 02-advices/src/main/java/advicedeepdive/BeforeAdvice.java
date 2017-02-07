@@ -11,23 +11,22 @@ import org.springframework.stereotype.Component;
 @Aspect
 public class BeforeAdvice {
 
-  Logger logger = LoggerFactory.getLogger(BeforeAdvice.class);
+    private Logger logger = LoggerFactory.getLogger(BeforeAdvice.class);
 
-  private boolean beforeCalled = false;
+    private boolean beforeCalled = false;
 
-  public void reset() {
-    beforeCalled = false;
-  }
+    public void reset() {
+        beforeCalled = false;
+    }
 
-  public boolean isBeforeCalled() {
-    return beforeCalled;
-  }
+    public boolean isBeforeCalled() {
+        return beforeCalled;
+    }
 
-  @Before("execution(void doSomething())")
-  public void entering(JoinPoint joinPoint) {
-    beforeCalled = true;
-    logger.trace("entering "
-        + joinPoint.getStaticPart().getSignature().toString());
-  }
+    @Before("execution(void doSomething())")
+    public void entering(JoinPoint joinPoint) {
+        beforeCalled = true;
+        logger.trace("entering " + joinPoint.getStaticPart().getSignature().toString());
+    }
 
 }

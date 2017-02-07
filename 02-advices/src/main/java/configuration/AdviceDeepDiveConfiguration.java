@@ -6,7 +6,7 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
 @Configuration
 @EnableAspectJAutoProxy
-@ComponentScan(basePackages="advicedeepdive")
+@ComponentScan(basePackages = "advicedeepdive")
 public class AdviceDeepDiveConfiguration {
 
 }
