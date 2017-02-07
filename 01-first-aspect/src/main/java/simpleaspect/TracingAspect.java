@@ -11,19 +11,18 @@ import org.springframework.stereotype.Component;
 @Aspect
 public class TracingAspect {
 
-	public boolean isEnteringCalled() {
-		return enteringCalled;
-	}
+    public boolean isEnteringCalled() {
+        return enteringCalled;
+    }
 
-	Logger logger = LoggerFactory.getLogger(TracingAspect.class);
+    private Logger logger = LoggerFactory.getLogger(TracingAspect.class);
 
-	boolean enteringCalled = false;
+    private boolean enteringCalled = false;
 
-	@Before("execution(void doSomething())")
-	public void entering(JoinPoint joinPoint) {
-		enteringCalled = true;
-		logger.trace("entering "
-				+ joinPoint.getStaticPart().getSignature().toString());
-	}
+    @Before("execution(void doSomething())")
+    public void entering(JoinPoint joinPoint) {
+        enteringCalled = true;
+        logger.trace("entering " + joinPoint.getStaticPart().getSignature().toString());
+    }
 
 }
