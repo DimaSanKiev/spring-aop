@@ -10,22 +10,22 @@ import org.springframework.stereotype.Component;
 @Aspect
 public class AfterThrowingAdvice {
 
-  Logger logger = LoggerFactory.getLogger(AfterThrowingAdvice.class);
+    private Logger logger = LoggerFactory.getLogger(AfterThrowingAdvice.class);
 
-  private boolean afterThrowingCalled = false;
+    private boolean afterThrowingCalled = false;
 
-  public void reset() {
-    afterThrowingCalled = false;
-  }
+    public void reset() {
+        afterThrowingCalled = false;
+    }
 
-  public boolean isAfterThrowingCalled() {
-    return afterThrowingCalled;
-  }
+    public boolean isAfterThrowingCalled() {
+        return afterThrowingCalled;
+    }
 
-  @AfterThrowing(pointcut = "execution(void throwsRuntimeException())", throwing = "ex")
-  public void logException(RuntimeException ex) {
-    afterThrowingCalled = true;
-    logger.error("Exception ", ex);
-  }
+    @AfterThrowing(pointcut = "execution(void throwsRuntimeException())", throwing = "ex")
+    public void logException(RuntimeException ex) {
+        afterThrowingCalled = true;
+        logger.error("Exception ", ex);
+    }
 
 }

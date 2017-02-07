@@ -15,43 +15,43 @@ import configuration.AdviceDeepDiveConfiguration;
 @ContextConfiguration(classes = AdviceDeepDiveConfiguration.class)
 public class AfterThrowingAdviceTest {
 
-	@Autowired
-	AfterThrowingAdvice afterThrowingAdvice;
+    @Autowired
+    private AfterThrowingAdvice afterThrowingAdvice;
 
-	@Autowired
-	SimpleService simpleService;
+    @Autowired
+    private SimpleService simpleService;
 
-	@Before
-	public void rest() {
-		afterThrowingAdvice.reset();
-	}
-	
-	@Test
-	public void afterThrowingIsNotCalledIfMethodReturnSuccessfully() {
-		assertFalse(afterThrowingAdvice.isAfterThrowingCalled());
-		simpleService.doSomething();
-		assertFalse(afterThrowingAdvice.isAfterThrowingCalled());
-	}
+    @Before
+    public void rest() {
+        afterThrowingAdvice.reset();
+    }
 
-	@Test(expected = RuntimeException.class)
-	public void afterThrowingIsCalledIfMethodThrowsRuntimeException() {
-		assertFalse(afterThrowingAdvice.isAfterThrowingCalled());
-		try {
-			simpleService.throwsRuntimeException();
-		} finally {
-			assertTrue(afterThrowingAdvice.isAfterThrowingCalled());
-		}
-	}
+    @Test
+    public void afterThrowingIsNotCalledIfMethodReturnSuccessfully() {
+        assertFalse(afterThrowingAdvice.isAfterThrowingCalled());
+        simpleService.doSomething();
+        assertFalse(afterThrowingAdvice.isAfterThrowingCalled());
+    }
 
-  @Test(expected = Exception.class)	
-	 public void afterThrowingIsNotCalledIfMethodThrowsException() throws Exception {
-	    assertFalse(afterThrowingAdvice.isAfterThrowingCalled());
-	    try {
-	      simpleService.throwsException();
-	    } finally {
-	      assertFalse(afterThrowingAdvice.isAfterThrowingCalled());
-	    }
-	  }
+    @Test(expected = RuntimeException.class)
+    public void afterThrowingIsCalledIfMethodThrowsRuntimeException() {
+        assertFalse(afterThrowingAdvice.isAfterThrowingCalled());
+        try {
+            simpleService.throwsRuntimeException();
+        } finally {
+            assertTrue(afterThrowingAdvice.isAfterThrowingCalled());
+        }
+    }
+
+    @Test(expected = Exception.class)
+    public void afterThrowingIsNotCalledIfMethodThrowsException() throws Exception {
+        assertFalse(afterThrowingAdvice.isAfterThrowingCalled());
+        try {
+            simpleService.throwsException();
+        } finally {
+            assertFalse(afterThrowingAdvice.isAfterThrowingCalled());
+        }
+    }
 
 
 }

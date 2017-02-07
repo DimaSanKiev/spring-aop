@@ -26,8 +26,7 @@ public class AfterAdvice {
     @After("execution(* *(..))")
     public void exiting(JoinPoint joinPoint) {
         afterCalled = true;
-        logger.trace("exiting "
-                + joinPoint.getSignature());
+        logger.trace("exiting " + joinPoint.getSignature());
         for (Object arg : joinPoint.getArgs()) {
             logger.trace("Arg : " + arg);
         }
