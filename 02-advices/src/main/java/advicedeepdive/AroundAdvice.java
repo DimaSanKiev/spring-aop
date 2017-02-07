@@ -20,8 +20,7 @@ public class AroundAdvice {
 
     @Around("execution(* *(..))")
     public Object trace(ProceedingJoinPoint proceedingJP) throws Throwable {
-        String methodInformation =
-                proceedingJP.getStaticPart().getSignature().toString();
+        String methodInformation = proceedingJP.getStaticPart().getSignature().toString();
         logger.trace("Entering " + methodInformation);
         called = true;
         try {
@@ -37,6 +36,5 @@ public class AroundAdvice {
     public boolean isCalled() {
         return called;
     }
-
 
 }
