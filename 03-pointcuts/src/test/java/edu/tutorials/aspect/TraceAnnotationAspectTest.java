@@ -1,6 +1,5 @@
 package edu.tutorials.aspect;
 
-import edu.tutorials.aspect.TraceAnnotationAspect;
 import edu.tutorials.configuration.SystemConfiguration;
 import edu.tutorials.service.SimpleService;
 import org.junit.Before;

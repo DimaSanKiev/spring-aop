@@ -1,6 +1,5 @@
 package edu.tutorials.aspect;
 
-import edu.tutorials.aspect.BeanNameAspect;
 import edu.tutorials.configuration.SystemConfiguration;
 import edu.tutorials.repository.SimpleRepository;
 import edu.tutorials.service.SimpleService;

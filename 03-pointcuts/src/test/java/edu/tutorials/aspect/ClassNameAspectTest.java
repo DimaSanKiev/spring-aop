@@ -1,6 +1,5 @@
 package edu.tutorials.aspect;
 
-import edu.tutorials.aspect.ClassNameAspect;
 import edu.tutorials.configuration.SystemConfiguration;
 import edu.tutorials.repository.SimpleRepository;
 import edu.tutorials.service.SimpleService;
@@ -40,7 +39,7 @@ public class ClassNameAspectTest {
     }
 
     @Test
-    public void tracingOnRepsositoryIsNotCalled() {
+    public void tracingOnRepositoryIsNotCalled() {
         assertThat(aroundTracingAspect.getCalled(), is(0));
         simpleRepository.doSomething();
         assertThat(aroundTracingAspect.getCalled(), is(0));
