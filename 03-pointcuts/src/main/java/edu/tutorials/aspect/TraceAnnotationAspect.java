@@ -16,8 +16,7 @@ public class TraceAnnotationAspect {
 
     @Around("execution(@annotation.Trace * *(..))")
     public void trace(ProceedingJoinPoint proceedingJP) throws Throwable {
-        String methodInformation =
-                proceedingJP.getStaticPart().getSignature().getName();
+        String methodInformation = proceedingJP.getStaticPart().getSignature().getName();
         logger.trace("Entering " + methodInformation);
         called++;
         try {

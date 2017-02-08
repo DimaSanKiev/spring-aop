@@ -14,10 +14,9 @@ public class BeanNameAspect {
     private Logger logger = LoggerFactory.getLogger(BeanNameAspect.class);
     private int called = 0;
 
-    @Around("MyPointcuts.beanNamePointcut()")
+    @Around("mypointcuts.MyPointcuts.beanNamePointcut()")
     public void trace(ProceedingJoinPoint proceedingJP) throws Throwable {
-        String methodInformation =
-                proceedingJP.getStaticPart().getSignature().toString();
+        String methodInformation = proceedingJP.getStaticPart().getSignature().toString();
         logger.trace("Entering " + methodInformation);
         called++;
         try {

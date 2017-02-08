@@ -16,8 +16,7 @@ public class ClassNameAspect {
 
     @Around("execution(* *..*Service.*(..))")
     public void trace(ProceedingJoinPoint proceedingJP) throws Throwable {
-        String methodInformation =
-                proceedingJP.getSignature().toString();
+        String methodInformation = proceedingJP.getSignature().toString();
         logger.trace("Entering " + methodInformation);
         called++;
         try {

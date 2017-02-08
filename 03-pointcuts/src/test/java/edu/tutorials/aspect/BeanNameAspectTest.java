@@ -39,7 +39,7 @@ public class BeanNameAspectTest {
     }
 
     @Test
-    public void tracingOnRepsositoryIsNotCalled() {
+    public void tracingOnRepositoryIsNotCalled() {
         assertThat(beanNameAspect.getCalled(), is(0));
         simpleRepository.doSomething();
         assertThat(beanNameAspect.getCalled(), is(0));
