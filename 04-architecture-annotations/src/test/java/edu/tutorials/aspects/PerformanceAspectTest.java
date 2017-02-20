@@ -37,9 +37,9 @@ public class PerformanceAspectTest {
     }
 
     @Test
-    public void performanceIsCalledForServices() throws Exception {
+    public void performanceIsNotCalledForServices() throws Exception {
         assertFalse(performanceAspect.isCalled());
         myService.doIt();
-        assertTrue(performanceAspect.isCalled());
+        assertFalse(performanceAspect.isCalled());
     }
 }
