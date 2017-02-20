@@ -1,5 +1,6 @@
 package edu.tutorials.aspects;
 
+import edu.tutorials.repository.AnotherRepository;
 import edu.tutorials.repository.MyRepository;
 import edu.tutorials.service.MyService;
 import org.junit.Before;
@@ -26,6 +27,9 @@ public class AroundTracingAspectTest {
     @Autowired
     private MyRepository myRepository;
 
+    @Autowired
+    private AnotherRepository anotherRepository;
+
     @Before
     public void setUp() {
         tracingAspect.resetCalled();
@@ -35,6 +39,13 @@ public class AroundTracingAspectTest {
     public void tracingIsCalledForRepositories() {
         assertFalse(tracingAspect.isCalled());
         myRepository.doIt();
+        assertTrue(tracingAspect.isCalled());
+    }
+
+    @Test
+    public void tracingIsCalledForAnotherRepository() {
+        assertFalse(tracingAspect.isCalled());
+        anotherRepository.doSomething();
         assertTrue(tracingAspect.isCalled());
     }
 
