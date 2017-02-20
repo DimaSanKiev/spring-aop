@@ -3,7 +3,7 @@ import org.aspectj.lang.annotation.Pointcut;
 public class SystemArchitecture {
 
 //    @Pointcut("execution(* (@org.springframework.stereotype.Repository *).*(..))") // any class annotated with @Repository
-    @Pointcut("execution(* edu.tutorials..repository.*.*(..))") // any class in a subpackage of edu.tutorials
+    @Pointcut("execution(* edu.tutorials..repository.*Repository.*(..))") // any class that ends with 'Repository' in a subpackage of edu.tutorials
     public void repository() {
     }
 
