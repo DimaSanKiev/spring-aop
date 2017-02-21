@@ -19,7 +19,7 @@ public class DemoClassTest {
     private DemoAspect demoAspect;
 
     @Autowired
-    private DemoClass demoClass;
+    private DemoInterface demoClass;
 
     @Before
     public void setUp() {
