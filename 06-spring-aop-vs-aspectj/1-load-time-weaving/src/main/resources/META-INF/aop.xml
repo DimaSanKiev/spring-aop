@@ -1,0 +1,13 @@
+<!DOCTYPE aspectj PUBLIC "-//AspectJ//DTD//EN" "http://www.eclipse.org/aspectj/dtd/aspectj.dtd">
+
+<aspectj>
+
+    <weaver>
+        <include within="edu.tutorials..*"/>
+    </weaver>
+
+    <aspects>
+        <aspect name="edu.tutorials.loadtimeweaving.DemoAspect"/>
+    </aspects>
+
+</aspectj>
